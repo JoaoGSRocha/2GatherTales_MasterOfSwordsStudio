@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.twogathertales.mss.Inventory.Inventory;
 
+
 public class MasterOfSwordsStudio extends ApplicationAdapter {
 	SpriteBatch batch;
 	Inventory inventory;
