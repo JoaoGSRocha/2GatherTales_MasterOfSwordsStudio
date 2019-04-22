@@ -12,6 +12,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 
 public class ItemController {
+    final static int WIN_HEIGHT = 480;
     float timeSinceClicking = 0;
     ItemsCity itemsCity = new ItemsCity();
     ItemsPlayer itemsPlayer = new ItemsPlayer();
@@ -28,15 +29,18 @@ public class ItemController {
     }
 
     @Nullable
+    /***
+     * clickedItem()
+     * Gdx.input.getY() uses a reversed coordiante.
+     */
     private Item clickedItem(){
         for(Item item : itemAL) {
             if (Gdx.input.isTouched()) {
                 Vector2 touchPos = new Vector2();
-                touchPos.set(Gdx.input.getX(), Gdx.input.getY());
+                touchPos.set(Gdx.input.getX(), -Gdx.input.getY()+WIN_HEIGHT);
                 if (Intersector.intersectSegmentRectangle(
-                        touchPos, touchPos, item.getRectangle())) {
+                        touchPos, touchPos, item.getRectangle()))
                     return item;
-                }
             }
         }
         return null;
