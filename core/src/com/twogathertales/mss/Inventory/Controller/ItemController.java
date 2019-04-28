@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
+import com.sun.istack.internal.Nullable;
 import com.twogathertales.mss.Inventory.Model.Item;
 import com.twogathertales.mss.Inventory.Model.ItemsCity;
 import com.twogathertales.mss.Inventory.Model.ItemsPlayer;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
