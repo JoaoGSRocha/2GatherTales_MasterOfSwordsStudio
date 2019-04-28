@@ -7,16 +7,15 @@ import com.badlogic.gdx.math.Vector2;
 import com.twogathertales.mss.Inventory.Model.Item;
 import com.twogathertales.mss.Inventory.Model.ItemsCity;
 import com.twogathertales.mss.Inventory.Model.ItemsPlayer;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
 public class ItemController {
     final static int WIN_HEIGHT = 480;
     float timeSinceClicking = 0;
-    ItemsCity itemsCity = new ItemsCity();
-    ItemsPlayer itemsPlayer = new ItemsPlayer();
-    ArrayList<Item> itemAL = new ArrayList<Item>();
+    public static ItemsCity itemsCity = new ItemsCity();
+    public static ItemsPlayer itemsPlayer = new ItemsPlayer();
+    public static ArrayList<Item> itemAL = new ArrayList<Item>();
     public void create(){
         itemAL.addAll(itemsCity.getItems());
         itemAL.addAll(itemsPlayer.getItems());
@@ -28,11 +27,11 @@ public class ItemController {
         sellItems();
     }
 
-    @Nullable
     /***
      * clickedItem()
-     * Gdx.input.getY() uses a reversed coordiante.
+     * Gdx.input.getY() uses a reversed coordinate.
      */
+
     private Item clickedItem(){
         for(Item item : itemAL) {
             if (Gdx.input.isTouched()) {
@@ -57,6 +56,19 @@ public class ItemController {
         }
     }
 
+    private Item sellItem2(){
+        for(Item item : itemAL) {
+            if (Gdx.input.isTouched()) {
+                Vector2 touchPos = new Vector2();
+                touchPos.set(Gdx.input.getX(), -Gdx.input.getY()+WIN_HEIGHT);
+                if (Intersector.intersectSegmentRectangle(
+                        touchPos, touchPos, item.getRectangle()))
+                    return item;
+            }
+        }
+        return null;
+    }
+
     private void renderPlayerItems(Batch batch){
         for(Item item : itemsPlayer.getItems()) {
             batch.draw(item.getImg(), item.getRectangle().x,
@@ -79,8 +91,10 @@ public class ItemController {
         for(Item item : itemsPlayer.getItems()){
             int currQuant = item.getQuantity();
             for(String lootItem : items)
-                if(lootItem.equals(item.getName()))
-                    item.setQuantity(currQuant++);
+                if(lootItem.equals(item.getName())) {
+                    item.setQuantity(++currQuant);
+                    System.out.println("Adding one " + item.getName() + " " + item.getQuantity());
+                }
         }
     }
 
