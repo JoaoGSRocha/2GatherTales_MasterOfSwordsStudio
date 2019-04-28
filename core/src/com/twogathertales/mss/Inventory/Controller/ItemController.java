@@ -4,10 +4,10 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
-import com.sun.istack.internal.Nullable;
 import com.twogathertales.mss.Inventory.Model.Item;
 import com.twogathertales.mss.Inventory.Model.ItemsCity;
 import com.twogathertales.mss.Inventory.Model.ItemsPlayer;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 
@@ -72,6 +72,15 @@ public class ItemController {
                     item.getRectangle().y);
             item.getFont().draw(batch, String.valueOf(item.getQuantity()),
                     item.getLblCoord_X(), item.getLblCoord_Y());
+        }
+    }
+
+    public void addMissionLoot(String[] items){
+        for(Item item : itemsPlayer.getItems()){
+            int currQuant = item.getQuantity();
+            for(String lootItem : items)
+                if(lootItem.equals(item.getName()))
+                    item.setQuantity(currQuant++);
         }
     }
 
