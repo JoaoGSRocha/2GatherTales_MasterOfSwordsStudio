@@ -56,19 +56,6 @@ public class ItemController {
         }
     }
 
-    private Item sellItem2(){
-        for(Item item : itemAL) {
-            if (Gdx.input.isTouched()) {
-                Vector2 touchPos = new Vector2();
-                touchPos.set(Gdx.input.getX(), -Gdx.input.getY()+WIN_HEIGHT);
-                if (Intersector.intersectSegmentRectangle(
-                        touchPos, touchPos, item.getRectangle()))
-                    return item;
-            }
-        }
-        return null;
-    }
-
     private void renderPlayerItems(Batch batch){
         for(Item item : itemsPlayer.getItems()) {
             batch.draw(item.getImg(), item.getRectangle().x,
