@@ -6,11 +6,14 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.twogathertales.mss.Inventory.Inventory;
 import com.twogathertales.mss.Components.MapManager;
+import com.twogathertales.mss.Missions.QuestsController;
+
 
 public class MasterOfSwordsStudio extends ApplicationAdapter {
 	SpriteBatch batch;
 	Inventory inventory;
 	MapManager mapManager;
+	QuestsController questsController;
 	@Override
 	public void create () {
 		inventory = new Inventory();
@@ -18,6 +21,8 @@ public class MasterOfSwordsStudio extends ApplicationAdapter {
 		mapManager = new MapManager();
 		mapManager.create();
 		inventory.create();
+		questsController = new QuestsController();
+		questsController.create(inventory.itemController);
 	}
 
 	@Override
@@ -27,6 +32,7 @@ public class MasterOfSwordsStudio extends ApplicationAdapter {
 		batch.begin();
 		mapManager.render(batch);
 		inventory.render(batch);
+		questsController.render();
 		batch.end();
 	}
 	

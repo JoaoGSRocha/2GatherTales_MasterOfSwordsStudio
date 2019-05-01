@@ -7,7 +7,7 @@ import com.twogathertales.mss.Inventory.Controller.ItemController;
 public class Inventory {
 
     private Texture inv_grid;
-    private ItemController itemController;
+    public static ItemController itemController;
 
     public void create () {
         itemController = new ItemController();
@@ -24,5 +24,4 @@ public class Inventory {
     public void dispose () {
         itemController.dispose();
     }
-
 }
