@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
+import com.twogathertales.mss.Components.MapManager;
 import com.twogathertales.mss.Inventory.Model.Item;
 import com.twogathertales.mss.Inventory.Model.ItemsCity;
 import com.twogathertales.mss.Inventory.Model.ItemsPlayer;
@@ -11,12 +12,14 @@ import com.twogathertales.mss.Inventory.Model.ItemsPlayer;
 import java.util.ArrayList;
 
 public class ItemController {
+    private MapManager map;
     final static int WIN_HEIGHT = 480;
     float timeSinceClicking = 0;
     public static ItemsCity itemsCity = new ItemsCity();
     public static ItemsPlayer itemsPlayer = new ItemsPlayer();
     public static ArrayList<Item> itemAL = new ArrayList<Item>();
     public void create(){
+        map = new MapManager();
         itemAL.addAll(itemsCity.getItems());
         itemAL.addAll(itemsPlayer.getItems());
     }
@@ -49,9 +52,11 @@ public class ItemController {
         timeSinceClicking += Gdx.graphics.getDeltaTime();
         if(timeSinceClicking > .1f) {
             if(clickedItem() != null)
-                if (clickedItem().getQuantity() > 0)
+                if (clickedItem().getQuantity() > 0) {
                     clickedItem().setQuantity(clickedItem()
-                            .getQuantity()-1);
+                            .getQuantity() - 1);
+                    map.addPoints(100);
+                }
             timeSinceClicking = 0;
         }
     }

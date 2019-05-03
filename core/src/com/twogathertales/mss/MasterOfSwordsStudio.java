@@ -8,7 +8,6 @@ import com.twogathertales.mss.Inventory.Inventory;
 import com.twogathertales.mss.Components.MapManager;
 import com.twogathertales.mss.Missions.QuestsController;
 
-
 public class MasterOfSwordsStudio extends ApplicationAdapter {
 	SpriteBatch batch;
 	Inventory inventory;

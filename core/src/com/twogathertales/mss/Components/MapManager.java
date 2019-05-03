@@ -1,16 +1,20 @@
 package com.twogathertales.mss.Components;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.utils.TimeUtils;
 
 public class MapManager {
-    private String Maps[] = {"0.jpg","1.jpg","2.jpg","3.jpg","4.jpg","5.jpg","6.jpg","7.jpg","8.jpg"};
+
+    private String Maps[] = {"0.jpg","1.jpg","2.jpg","3.jpg","4.jpg"};
     private int mapsLenght;
-    private int points=0;
+    private static int time =0;
     private int currentIndex=0;
     private Texture[] bgs;
+    public static int points = 0;
+    private long updateTimeMs = 0;
+    private long updatePointsMs = 0;
 
     public int getPoints() {
         return points;
@@ -18,6 +22,14 @@ public class MapManager {
 
     public void addPoints(int point) {
         this.points += point;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void addTime(int time) {
+        this.time += time;
     }
 
     public void removePoints(int point) {
@@ -34,26 +46,41 @@ public class MapManager {
         }
     }
 
-    public void render (Batch batch) {
-        if(points<10){
-            currentIndex=0;
-        }else if(points>=100 && points<200){
-            currentIndex=1;
-        }else if(points>=200 && points<300){
-            currentIndex=2;
-        }else if(points>=300 && points<400){
-            currentIndex=3;
-        }else if(points>=300 && points<500){
-            currentIndex=4;
-        }else if(points>=400 && points<600){
-            currentIndex=5;
-        }else if(points>=500 && points<700){
-            currentIndex=6;
-        }else if(points>=600 && points<700){
-            currentIndex=7;
-        }else if(points>=10 && points<20){
-            currentIndex=8;
+    public void addPointsOverTime() {
+        long currentPoints = TimeUtils.millis();
+
+        if(currentPoints - updatePointsMs > 5000){
+            addPoints(15);
+            System.out.println("points: "+time);
+            updatePointsMs = currentPoints;
         }
+    }
+
+    public void timePass() {
+        long currentTime = TimeUtils.millis();
+
+        if(currentTime - updateTimeMs > 300){
+            addTime(1);
+            System.out.println("time: "+time);
+            updateTimeMs = currentTime;
+        }
+    }
+
+    public void render (Batch batch) {
+        timePass();
+        addPointsOverTime();
+        if(time <10){
+            currentIndex=0;
+        }else if(time >=50 && time <100){
+            currentIndex=1;
+        }else if(time >=100 && time <200){
+            currentIndex=2;
+        }else if(time >=200 && time <300){
+            currentIndex=3;
+        }else if(time >=300){
+            currentIndex=4;
+        }
+
         batch.draw(bgs[currentIndex], 0, 0);
     }
 }

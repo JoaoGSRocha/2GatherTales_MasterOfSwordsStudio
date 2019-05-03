@@ -11,7 +11,8 @@ public class QuestsController {
     private long updateTimeMs;
     private boolean isQuestOngoing = false;
     private int questID;
-    private int[] questKeys = {Input.Keys.NUM_1,Input.Keys.NUM_2,Input.Keys.NUM_3};
+    private int[] questKeys = {Input.Keys.NUM_1,
+            Input.Keys.NUM_2,Input.Keys.NUM_3};
     private ItemController itemController;
 
     public void create(ItemController itemController){
