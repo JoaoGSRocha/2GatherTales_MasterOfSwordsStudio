@@ -4,9 +4,9 @@ import java.util.Random;
 
 public class Loots {
 
-    Random random = new Random();
+    private Random random = new Random();
 
-    String[][] questRewards = new String[][]{{"sword", "shield"},{"armour", "boots"},{"sword","gloves"}};
+    private String[][] questRewards = new String[][]{{"sword", "shield"},{"armour", "boots"},{"sword","gloves"}};
 
     public Loots() {
     }

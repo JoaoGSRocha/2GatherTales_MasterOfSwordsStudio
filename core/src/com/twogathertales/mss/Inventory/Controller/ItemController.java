@@ -36,7 +36,7 @@ public class ItemController {
      */
 
     private Item clickedItem(){
-        for(Item item : itemAL) {
+        for(Item item : itemsPlayer.getItems()) {
             if (Gdx.input.isTouched()) {
                 Vector2 touchPos = new Vector2();
                 touchPos.set(Gdx.input.getX(), -Gdx.input.getY()+WIN_HEIGHT);
@@ -55,6 +55,11 @@ public class ItemController {
                 if (clickedItem().getQuantity() > 0) {
                     clickedItem().setQuantity(clickedItem()
                             .getQuantity() - 1);
+                    for(Item item : itemsCity.getItems()){
+                        if(item.getName().equals(clickedItem().getName())){
+                            item.setQuantity(item.getQuantity()+1);
+                        }
+                    }
                     map.addPoints(100);
                 }
             timeSinceClicking = 0;
