@@ -9,19 +9,19 @@ import java.util.Arrays;
 
 public class ItemsCity  extends  AbstractItems {
 
-    Item armour = new Item("armour", 10, new BitmapFont(),
+    Item armour = new Item("armour", 0, new BitmapFont(),
             new Texture("armour.png"), new Rectangle(484, 160,43,66),true,
             510, 180);
-    Item gloves = new Item("gloves", 10, new BitmapFont(),
+    Item gloves = new Item("gloves", 0, new BitmapFont(),
             new Texture("gloves.png"), new Rectangle(482, 246, 47,23),true,
             510, 255);
-    Item sword = new Item("sword", 10, new BitmapFont(),
+    Item sword = new Item("sword", 0, new BitmapFont(),
             new Texture("sword.png"), new Rectangle(589,170,22, 73),true,
             595, 180);
-    Item shield = new Item("shield", 10, new BitmapFont(),
+    Item shield = new Item("shield", 0, new BitmapFont(),
             new Texture("shield.png"), new Rectangle(535,220, 48, 48),true,
             560, 230);
-    Item boots = new Item("boots", 10, new BitmapFont(),
+    Item boots = new Item("boots", 0, new BitmapFont(),
             new Texture("boots.png"), new Rectangle(535, 164, 48, 48),true,
             560, 180);
 

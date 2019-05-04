@@ -1,8 +1,12 @@
 package com.twogathertales.mss.Components;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.utils.TimeUtils;
 
 public class MapManager {
@@ -15,6 +19,7 @@ public class MapManager {
     public static int points = 0;
     private long updateTimeMs = 0;
     private long updatePointsMs = 0;
+    private BitmapFont bitmapFont;
 
     public int getPoints() {
         return points;
@@ -44,6 +49,14 @@ public class MapManager {
             String fileName = Maps[i];
             bgs[i] = new Texture(Gdx.files.internal("Maps/"+fileName));
         }
+
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("OpenSans-ExtraBold.ttf"));
+        FreeTypeFontParameter parameter = new FreeTypeFontParameter();
+        parameter.size = 24;
+        parameter.shadowOffsetX = parameter.shadowOffsetY = 2;
+        parameter.borderWidth = 1;
+        bitmapFont = generator.generateFont(parameter);
+        generator.dispose();
     }
 
     public void addPointsOverTime() {
@@ -82,5 +95,7 @@ public class MapManager {
         }
 
         batch.draw(bgs[currentIndex], 0, 0);
+        bitmapFont.draw(batch,"Points: "+points,20,Gdx.graphics.getHeight()-20);
+
     }
 }

@@ -34,7 +34,7 @@ public class MasterOfSwordsStudio extends ApplicationAdapter {
 		batch.begin();
 		mapManager.render(batch);
 		inventory.render(batch);
-		questsController.render();
+		questsController.render(batch);
 		batch.end();
 	}
 	
