@@ -10,19 +10,19 @@ import java.util.Arrays;
 public class ItemsPlayer extends AbstractItems {
 
     Item armour = new Item("armour", 10, new BitmapFont(),
-            new Texture("armour.png"), new Rectangle(4, 163,43,66),true,
+            new Texture("armour.png"), new Rectangle(4, 160,43,66),true,
         30,180);
     Item gloves = new Item("gloves", 10, new BitmapFont(),
-            new Texture("gloves.png"), new Rectangle(2, 240, 47,23),true,
+            new Texture("gloves.png"), new Rectangle(2, 246, 47,23),true,
             30, 255);
     Item sword = new Item("sword", 10, new BitmapFont(),
-            new Texture("sword.png"), new Rectangle(109,160,22, 73),true,
+            new Texture("sword.png"), new Rectangle(109,170,22, 73),true,
             115, 180);
     Item shield = new Item("shield", 10, new BitmapFont(),
-            new Texture("shield.png"), new Rectangle(55,215, 48, 48),true,
+            new Texture("shield.png"), new Rectangle(55,220, 48, 48),true,
             80, 230);
     Item boots = new Item("boots", 10, new BitmapFont(),
-            new Texture("boots.png"), new Rectangle(55, 160, 48, 48),true,
+            new Texture("boots.png"), new Rectangle(55, 164, 48, 48),true,
             80, 180);
 
     ArrayList<Item> playerItems = new ArrayList<Item>(Arrays

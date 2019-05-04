@@ -11,13 +11,14 @@ public class Inventory {
 
     public void create () {
         itemController = new ItemController();
-        inv_grid = new Texture("Backg_Grid_Vert.jpg"); //160 265
+        //inv_grid = new Texture("Backg_Grid_Vert.jpg"); //160 265
+        inv_grid = new Texture("bg_full.png");
         itemController.create();
     }
 
     public void render (Batch batch) {
         batch.draw(inv_grid, 0, 0);
-        batch.draw(inv_grid, 480, 0);
+        //batch.draw(inv_grid, 480, 0);
         itemController.render(batch);
     }
 
