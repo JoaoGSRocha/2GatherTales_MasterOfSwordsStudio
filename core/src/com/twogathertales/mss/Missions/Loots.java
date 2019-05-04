@@ -6,7 +6,8 @@ public class Loots {
 
     private Random random = new Random();
 
-    private String[][] questRewards = new String[][]{{"sword", "shield"},{"armour", "boots"},{"sword","gloves"}};
+    private String[][] questRewards = new String[][]{{"sword", "shield"},
+            {"armour", "boots"},{"sword","gloves"}};
 
     public Loots() {
     }
@@ -24,7 +25,6 @@ public class Loots {
         switch(riskLevel){
             case 0:
                 int rand = random.nextInt(2);
-                System.out.println(rand);
                 return new int[]{rand};
             case 1:
                 int numberOfItems = random.nextInt(2) + 1;

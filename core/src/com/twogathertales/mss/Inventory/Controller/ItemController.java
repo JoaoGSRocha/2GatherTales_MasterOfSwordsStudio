@@ -14,19 +14,20 @@ import com.twogathertales.mss.Inventory.Model.Item;
 import com.twogathertales.mss.Inventory.Model.ItemsCity;
 import com.twogathertales.mss.Inventory.Model.ItemsPlayer;
 
-import java.util.ArrayList;
-
 public class ItemController {
     private int pointsPerQuest = 150;
     private BitmapFont bitmapFont;
     private MapManager map;
     private boolean drawLoot = false;
+    private boolean drawSoldItem = false;
     private String[] lootToDraw;
     private long startTimeMs;
     final static int WIN_HEIGHT = 480;
     float timeSinceClicking = 0;
     public static ItemsCity itemsCity = new ItemsCity();
     public static ItemsPlayer itemsPlayer = new ItemsPlayer();
+    private int itemValue = 100;
+
     public void create(){
         map = new MapManager();
 
@@ -46,6 +47,9 @@ public class ItemController {
         sellItems();
         if(drawLoot) {
           showLootDraw(batch);
+        }
+        if(drawSoldItem) {
+            showSoldItemDraw(batch);
         }
     }
 
@@ -72,14 +76,16 @@ public class ItemController {
         if(timeSinceClicking > .1f) {
             if(clickedItem() != null)
                 if (clickedItem().getQuantity() > 0) {
-                    clickedItem().setQuantity(clickedItem()
-                            .getQuantity() - 1);
-                    for(Item item : itemsCity.getItems()){
-                        if(item.getName().equals(clickedItem().getName())){
+                    itemValue= (clickedItem().getName().equals(SalesController
+                            .salesItem[SalesController.currentItemIndex]))
+                            ?SalesController.currentSalesValue
+                            :100;
+                    clickedItem().setQuantity(clickedItem().getQuantity() - 1);
+                    for(Item item : itemsCity.getItems())
+                        if(item.getName().equals(clickedItem().getName()))
                             item.setQuantity(item.getQuantity()+1);
-                        }
-                    }
-                    map.addPoints(100);
+                    map.addPoints(itemValue);
+                    showSoldItem();
                 }
             timeSinceClicking = 0;
         }
@@ -109,17 +115,33 @@ public class ItemController {
             for(String lootItem : items)
                 if(lootItem.equals(item.getName())) {
                     item.setQuantity(++currQuant);
-                    System.out.println("Adding one " + item.getName() + " " + item.getQuantity());
                 }
         }
         showLoot(items);
         MapManager.points+=150;
     }
 
+
+
     public void showLoot(String[] items){
         lootToDraw = items;
         drawLoot = true;
         startTimeMs = TimeUtils.millis();
+    }
+
+    public void showSoldItem(){
+        drawSoldItem = true;
+        startTimeMs = TimeUtils.millis();
+    }
+
+    public void showSoldItemDraw(Batch batch){
+        bitmapFont.draw(batch,"Item sold!",190,180);
+        bitmapFont.draw(batch,"You obtained:",190,164);
+        int y = 148;
+        bitmapFont.draw(batch,itemValue +"Gold coins",190,y);
+        if(TimeUtils.millis()-startTimeMs>2500){
+            drawSoldItem = false;
+        }
     }
 
     public void showLootDraw(Batch batch){

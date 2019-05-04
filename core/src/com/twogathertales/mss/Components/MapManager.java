@@ -65,7 +65,6 @@ public class MapManager {
 
         if(currentPoints - updatePointsMs > 5000){
             addPoints(15);
-            System.out.println("points: "+points);
             updatePointsMs = currentPoints;
         }
     }
@@ -75,7 +74,6 @@ public class MapManager {
 
         if(currentTime - updateTimeMs > 300){
             addTime(1);
-            System.out.println("time: "+time);
             updateTimeMs = currentTime;
         }
     }
