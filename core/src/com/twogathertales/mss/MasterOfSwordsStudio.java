@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.twogathertales.mss.Audio.BGMusic;
 import com.twogathertales.mss.Inventory.Inventory;
 import com.twogathertales.mss.Components.MapManager;
 import com.twogathertales.mss.Missions.QuestsController;
@@ -13,6 +14,7 @@ public class MasterOfSwordsStudio extends ApplicationAdapter {
 	Inventory inventory;
 	MapManager mapManager;
 	QuestsController questsController;
+	BGMusic bgMusic;
 	@Override
 	public void create () {
 		inventory = new Inventory();
@@ -22,6 +24,7 @@ public class MasterOfSwordsStudio extends ApplicationAdapter {
 		inventory.create();
 		questsController = new QuestsController();
 		questsController.create(inventory.itemController);
+		bgMusic = new BGMusic(Gdx.files.internal("achaidh-cheide-by-kevin-macleod.mp3"),100,true);
 	}
 
 	@Override
@@ -39,5 +42,6 @@ public class MasterOfSwordsStudio extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		inventory.dispose();
+		bgMusic.clean();
 	}
 }
