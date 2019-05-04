@@ -43,8 +43,6 @@ public class QuestsController {
                 }
             }
         }
-
-
     }
 
     private void startQuest(int questID){

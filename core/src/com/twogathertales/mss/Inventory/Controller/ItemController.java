@@ -17,6 +17,7 @@ import com.twogathertales.mss.Inventory.Model.ItemsPlayer;
 import java.util.ArrayList;
 
 public class ItemController {
+    private int pointsPerQuest = 150;
     private BitmapFont bitmapFont;
     private MapManager map;
     private boolean drawLoot = false;
@@ -112,6 +113,7 @@ public class ItemController {
                 }
         }
         showLoot(items);
+        MapManager.points+=150;
     }
 
     public void showLoot(String[] items){
@@ -127,6 +129,9 @@ public class ItemController {
         for(String s : lootToDraw){
             bitmapFont.draw(batch,"1x "+s,190,y);
             y-=16;
+        }
+        if(pointsPerQuest>0){
+            bitmapFont.draw(batch,pointsPerQuest+" Points",190,y);
         }
 
         if(TimeUtils.millis()-startTimeMs>2500){
