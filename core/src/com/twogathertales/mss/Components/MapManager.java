@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.twogathertales.mss.MasterOfSwordsStudio;
 
 public class MapManager {
 
@@ -92,6 +93,17 @@ public class MapManager {
             currentIndex=3;
         }else if(time >=300){
             currentIndex=4;
+        }
+
+        /*O jogo acaba pouco depois de entrares no ultimo mapa...
+
+        A ideia é o jogador ainda poder ver um bocadinho o
+        ultimo mapa antes do ecrã desaparecer...
+        PS: por algum motivo o ecrã final está a acontecer 2 segundos
+        mais cedo que o definido...
+         */
+        if(time >=310){
+            MasterOfSwordsStudio.gameOver = true;
         }
 
         batch.draw(bgs[currentIndex], 0, 0);

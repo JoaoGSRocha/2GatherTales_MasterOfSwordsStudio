@@ -15,11 +15,16 @@ public class MasterOfSwordsStudio extends ApplicationAdapter {
 	MapManager mapManager;
 	QuestsController questsController;
 	BGMusic bgMusic;
+	EndScreen endScreen;
+
+	public static boolean gameOver = false;
+
 	@Override
 	public void create () {
 		inventory = new Inventory();
 		batch = new SpriteBatch();
 		mapManager = new MapManager();
+		endScreen = new EndScreen();
 		mapManager.create();
 		inventory.create();
 		questsController = new QuestsController();
@@ -32,9 +37,14 @@ public class MasterOfSwordsStudio extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		mapManager.render(batch);
-		inventory.render(batch);
-		questsController.render(batch);
+		if(!gameOver){
+			mapManager.render(batch);
+			inventory.render(batch);
+			questsController.render(batch);
+		} else {
+			endScreen.create();
+			endScreen.render(batch);
+		}
 		batch.end();
 	}
 	
