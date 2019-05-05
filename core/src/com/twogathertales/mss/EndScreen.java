@@ -51,7 +51,7 @@ public class EndScreen {
 
     public void render(Batch batch){
         batch.draw(new Texture(Gdx.files.internal("Maps/4.jpg")), 0, 0);
-        if(MapManager.points>=3000){
+        if(MapManager.points>=10000){
             bitmapFontVictory.draw(batch,"Victory",20,400);
         } else{
             bitmapFontDefeat.draw(batch,"Defeat",20,400);

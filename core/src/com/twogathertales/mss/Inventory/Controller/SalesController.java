@@ -17,7 +17,7 @@ public class SalesController {
     public int randomizeSalesItemIndex(){
         timeSinceClicking += Gdx.graphics.getDeltaTime();
         if(timeSinceClicking > 10f) {
-            currentItemIndex = random.nextInt(7);
+            currentItemIndex = random.nextInt(6);
             timeSinceClicking = 0;
             currentSalesValue = randomizeSalesValue();
             return random.nextInt(6);
